@@ -1,0 +1,58 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="jquery-orderby.js"></script>
+	<script type="text/javascript">
+
+$(document).ready(function()
+{
+	$('#btnAddFootballPlayerToList').click(function()
+	{
+		$("#listboxFootballPlayers option:selected, #selectedFootballPlayers option")
+			.orderBy(function() { return +this.value.substr(1); })
+			.appendTo('#selectedFootballPlayers');
+	});
+
+	$('#btnRemoveFootballPlayerFromList').click(function()
+	{
+		$("#selectedFootballPlayers option:selected, #listboxFootballPlayers option")
+			.orderBy(function() { return +this.value.substr(1); })
+			.appendTo("#listboxFootballPlayers");
+	});
+});
+
+	</script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>
+            <select id="listboxFootballPlayers" size="5" multiple="multiple" style="width: 200px;">
+				<option value="l1">Cristiano Ronaldo</option>
+				<option value="l2">Ricardo Kaka</option>
+				<option value="l3">Lionel Messi</option>
+				<option value="l4">Gerd Muller</option>
+				<option value="l5">Johan Crujjf</option>
+				<option value="l6">Franz Beckenbauer</option>
+				<option value="l7">David Beckham</option>
+            </select>
+        </td>
+                            
+        <td>
+            <table>
+                <tr><td><input type="button" id="btnAddFootballPlayerToList" value="->" /> </td></tr>
+                <tr><td><input type="button" id="btnRemoveFootballPlayerFromList" value="<-" /></td></tr>
+            </table>
+        </td>
+                            
+        <td>
+            <select id="selectedFootballPlayers" size="5" multiple="multiple" style="width: 200px;">
+            </select>
+        </td>
+    </tr>
+</table>
+ 
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>
+	<style type="text/css">
+.top
+{
+	color:Red;
+}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="jquery-orderby.js"></script>
+	<script type="text/javascript">
+
+$(document).ready(function()
+{
+	for (var i = 0; i<100; i++)
+	{
+		$("<li/>").text(parseInt(Math.random() * 1000) - 500).appendTo("#list");
+	}
+
+	$("#sort-default").click(function()
+	{
+		$("#list li").orderBy().appendTo("#list");
+	});
+	
+	$("#sort-asc").click(function()
+	{
+		$("#list li").orderBy(
+			function() { return !$(this).hasClass("top"); },
+			{num:true, key:function() {return $(this).text();}}
+		).appendTo("#list");
+	});
+
+	$("#sort-desc").click(function()
+	{
+		$("#list li").orderBy(
+			function() { return !$(this).hasClass("top"); },
+			{num:true, desc:true, key:function() {return $(this).text();}}
+		).appendTo("#list");
+	});
+
+	$("#randomize-list").click(function()
+	{
+		$("#list li").shuffle().appendTo("#list");
+	});
+	
+	$("#reverse-list").click(function()
+	{
+		$("#list li").reverse().appendTo("#list");
+	});
+});
+
+	</script>
+</head>
+<body>
+
+	<button id="sort-default">default</button>
+	<button id="sort-asc">asc</button>
+	<button id="sort-desc">desc</button>
+	<button id="randomize-list">randomize</button>
+	<button id="reverse-list">reverse</button>
+
+	<ul id="list">
+		<li>41</li>
+		<li>-4</li>
+		<li>zzzz</li>
+		<li>14</li>
+		<li>2</li>
+		<li class="top">3</li>
+		<li>1</li>
+	</ul>
+
+</body>
+</html>
